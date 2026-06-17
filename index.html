@@ -930,8 +930,8 @@
 })();
 
 /* ===== CV button placeholder (no link yet) ===== */
-document.getElementById("cvBtn").addEventListener("click", e => e.preventDefault());
-
+document.getElementById("cvBtn").setAttribute("href", "/Zain_s_Cloud_Resume.pdf");
+document.getElementById("cvBtn").setAttribute("download", "");
 /* ===== contact form -> mailto ===== */
 (function () {
   document.getElementById("contactForm").addEventListener("submit", e => {
@@ -947,7 +947,7 @@ document.getElementById("cvBtn").addEventListener("click", e => e.preventDefault
 
 /* ===== calendar links: paste your Google Calendar booking URL below ===== */
 (function () {
-  const CAL_URL = ""; // <-- put your Google Calendar appointment link here
+  const CAL_URL = "https://calendar.app.google/xt8THqJW79xrRCvs6"; // <-- put your Google Calendar appointment link here
   document.querySelectorAll(".cal-link").forEach(a => {
     if (CAL_URL) { a.href = CAL_URL; }
     else { a.addEventListener("click", e => { if (a.getAttribute("href") === "#") e.preventDefault(); }); }
