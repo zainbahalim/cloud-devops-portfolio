@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Zain Bahalim — Cloud · DevOps · Security Engineer</title>
-<meta name="description" content="Zain Bahalim — Computer Science student and cloud-focused engineer in Houston, building secure, scalable infrastructure on Microsoft Azure." />
+<meta name="description" content="Zain Bahalim, Computer Science student and Cloud Network Engineer in Houston, building and supporting secure, reliable infrastructure on Microsoft Azure." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,7 +235,8 @@
   .swipe-hint { text-align: center; font-family: var(--mono); font-size: 0.74rem; color: var(--dim); margin-top: 18px; letter-spacing: 0.08em; }
 
   /* ---------- certs ---------- */
-  .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+  .cert-grid .cert-card { flex: 0 1 calc((100% - 36px) / 3); }
   .cert-card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 28px 24px; text-align: center; transition: border-color 0.25s, transform 0.25s; }
   .cert-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
   .cert-card .badge-ic { width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 14px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; }
@@ -244,6 +245,7 @@
   .cert-card .issuer { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
   .status { font-family: var(--mono); font-size: 0.72rem; padding: 5px 13px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; }
   .status.progress { background: rgba(250,204,21,0.1); color: #facc15; border: 1px solid rgba(250,204,21,0.25); }
+  .status.done { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
   .status.ongoing { background: var(--accent-soft); color: var(--accent-2); border: 1px solid var(--accent-line); }
   .status .d { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
@@ -291,7 +293,7 @@
   /* ---------- responsive ---------- */
   @media (max-width: 860px) {
     .skill-grid { grid-template-columns: 1fr 1fr; }
-    .cert-grid { grid-template-columns: 1fr 1fr; }
+    .cert-grid .cert-card { flex-basis: calc((100% - 18px) / 2); }
     .contact-cards { grid-template-columns: 1fr 1fr 1fr; }
     .about-top, .xp-cols { grid-template-columns: 1fr; gap: 40px; }
     .about-top { text-align: center; }
@@ -306,7 +308,8 @@
     .burger { display: block; }
     .nav-links.show { display: flex; flex-direction: column; gap: 18px; position: absolute; top: 68px; left: 0; right: 0; background: rgba(11,12,14,0.97); backdrop-filter: blur(14px); padding: 24px; border-bottom: 1px solid var(--line-soft); }
     .nav-links.show a.active::after { display: none; }
-    .skill-grid, .cert-grid, .contact-cards, .stats { grid-template-columns: 1fr; }
+    .skill-grid, .contact-cards, .stats { grid-template-columns: 1fr; }
+    .cert-grid .cert-card { flex-basis: 100%; }
     .contact-form .row { grid-template-columns: 1fr; }
     .btn { flex: 1; justify-content: center; min-width: 0; }
     .pcard { flex-basis: 280px; }
@@ -356,12 +359,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       View My Work
     </a>
-    <!-- CV link to be added once the resume PDF is ready -->
-    <a href="#" class="btn ghost" id="cvBtn">
+    <a href="/Zain_s_Cloud_Resume.pdf" class="btn ghost" id="cvBtn" download>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
       Download CV
     </a>
-    <!-- Replace href with your Google Calendar appointment-scheduling link -->
     <a href="#" class="btn primary cal-link" id="connectBtn" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       Wanna Connect?
@@ -378,15 +379,16 @@
     <div class="about-top">
       <div class="about-body reveal">
         <p>
-          I'm a <strong>Computer Science student and cloud-focused engineer</strong> based in Houston,
-          with a habit of turning messy problems into systems that just work. My path so far runs through
-          cloud infrastructure on <strong>Microsoft Azure</strong>, DevOps automation, and security
-          monitoring — building CI/CD pipelines, standing up SIEM environments, and hardening cloud
-          resources across two internships. I'm currently working toward my <strong>AZ-900</strong> and
-          <strong>CompTIA Security+</strong>.
+          I'm a <strong>Computer Science student and Cloud Network Engineer</strong> based in Houston,
+          with a habit of turning messy problems into systems that just work. Right now I support production
+          infrastructure at <strong>Nagarro</strong>, keeping VPN, connectivity, and system issues resolved for
+          200+ users. Before that, I spent two internships on <strong>Microsoft Azure</strong> building CI/CD
+          pipelines, triaging security alerts with KQL, and locking down cloud environments with RBAC.
+          I've earned my <strong>AZ-900</strong> and I'm working toward <strong>Security+</strong>,
+          <strong>CCNA</strong>, and <strong>AZ-104</strong>.
         </p>
         <p>
-          Beyond the terminal, I run Pop!_OS as my daily driver and genuinely enjoy the grind of learning —
+          Beyond the terminal, I run Pop!_OS as my daily driver and genuinely enjoy the grind of learning,
           whether that's a new Azure service, a hard <strong>LeetCode</strong> problem, or a fresh attack
           technique to defend against. What drives me is building things that are fast, reliable, and safe,
           and I'm looking for a team where I can keep doing exactly that.
@@ -395,7 +397,7 @@
           <span class="lbl">Languages:</span>
           <span class="lang">Urdu <b>· Fluent</b></span>
           <span class="lang">Hindi <b>· Fluent</b></span>
-          <span class="lang">Spanish <b>· Fluent</b></span>
+          <span class="lang">Spanish <b>· Conversational</b></span>
         </div>
       </div>
 
@@ -409,10 +411,10 @@
     </div>
 
     <div class="stats reveal">
-      <div class="stat"><div class="num">2</div><div class="label">Tech internships</div></div>
-      <div class="stat"><div class="num">5<span class="suf">+</span></div><div class="label">Cloud &amp; security projects</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Tech roles</div></div>
+      <div class="stat"><div class="num">99.9<span class="suf">%</span></div><div class="label">Uptime for 200+ users</div></div>
       <div class="stat"><div class="num">35<span class="suf">%</span></div><div class="label">Faster deployments</div></div>
-      <div class="stat"><div class="num">15<span class="suf">+</span></div><div class="label">Security events detected</div></div>
+      <div class="stat"><div class="num">15<span class="suf">+</span></div><div class="label">Critical alerts triaged</div></div>
     </div>
   </div>
 </section>
@@ -432,7 +434,7 @@
         <div class="panel">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
           <h3>Cloud Engineering</h3>
-          <p>Architecting and deploying scalable, secure infrastructure on Azure — App Service, Blob Storage, and RBAC done right.</p>
+          <p>Upgrading and migrating Azure environments with least privilege and RBAC built in from the start.</p>
         </div>
       </div>
 
@@ -442,7 +444,7 @@
         <div class="panel">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
           <h3>DevOps &amp; Automation</h3>
-          <p>CI/CD pipelines in Azure DevOps with Python &amp; PowerShell that ship faster and break less.</p>
+          <p>CI/CD in Azure DevOps and GitHub Actions, with Python test automation and disciplined change management.</p>
         </div>
       </div>
 
@@ -452,28 +454,27 @@
         <div class="panel">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span>
           <h3>Security &amp; SIEM</h3>
-          <p>Threat detection with Azure Sentinel and KQL, plus hands-on vulnerability scanning and remediation.</p>
+          <p>Tuning KQL and SQL against production logs to triage alerts, plus hands-on SIEM labs and incident response.</p>
         </div>
       </div>
 
       <div class="skill-card reveal" tabindex="0" style="--c1:#2a2350;--c2:#100f1a;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M8 9l3 3-3 3M13 15h3M3 4h18v16H3z"/></svg></span>
-        <span class="front-title">Backend Development</span>
+        <span class="front-title">Backend, Data &amp; AI</span>
         <div class="panel">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 9l3 3-3 3M13 15h3M3 4h18v16H3z"/></svg></span>
-          <h3>Backend Development</h3>
-          <p>Python and Flask services with REST APIs, wired into cloud and AI through the Azure OpenAI API.</p>
+          <h3>Backend, Data &amp; AI</h3>
+          <p>REST APIs, SQL stored procedures, and relational data models, wired into hosted LLMs through the Azure OpenAI API.</p>
         </div>
       </div>
 
       <div class="skill-card reveal" tabindex="0" style="--c1:#4a3416;--c2:#19120a;">
-        <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M8 21h8M12 17v4M7 4h10l-1 9a4 4 0 0 1-8 0z"/></svg></span>
-        <span class="front-title">Competitive Coding</span>
+        <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></svg></span>
+        <span class="front-title">Networking &amp; Support</span>
         <div class="panel">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10l-1 9a4 4 0 0 1-8 0z"/></svg></span>
-          <h3>Competitive Coding</h3>
-          <p>Sharpening data structures and algorithms one problem at a time.</p>
-          <a href="https://leetcode.com/u/zainbahalim/" target="_blank" rel="noopener">View my LeetCode →</a>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></svg></span>
+          <h3>Networking &amp; Support</h3>
+          <p>Root-causing VPN and connectivity issues in production, with tickets run through ServiceNow and Jira.</p>
         </div>
       </div>
 
@@ -492,39 +493,27 @@
     <div class="reveal">
       <div class="skill-block">
         <h4>Cloud &amp; DevOps</h4>
-        <div class="chips">
-          <span class="chip">Microsoft Azure</span><span class="chip">Azure DevOps</span>
-          <span class="chip">App Service</span><span class="chip">Blob Storage</span>
-          <span class="chip">Azure Monitor</span><span class="chip">Log Analytics</span>
-          <span class="chip">Google Cloud Platform</span><span class="chip">CI/CD</span>
-          <span class="chip">Azure Test Plans</span>
-        </div>
+        <div class="chips"><span class="chip">Microsoft Azure</span><span class="chip">Azure DevOps</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">App Service</span><span class="chip">Blob Storage</span><span class="chip">Azure Monitor</span><span class="chip">Log Analytics</span><span class="chip">Google Cloud Platform</span></div>
       </div>
       <div class="skill-block">
-        <h4>Security</h4>
-        <div class="chips">
-          <span class="chip">Azure Sentinel (SIEM)</span><span class="chip">KQL</span>
-          <span class="chip">RBAC</span><span class="chip">IAM</span>
-          <span class="chip">AES-256</span><span class="chip">Nessus</span>
-          <span class="chip">Nmap</span><span class="chip">Metasploit</span>
-          <span class="chip">Vulnerability Scanning</span>
-        </div>
+        <h4>Security &amp; Networking</h4>
+        <div class="chips"><span class="chip">KQL</span><span class="chip">SIEM</span><span class="chip">Azure Sentinel</span><span class="chip">RBAC</span><span class="chip">Least Privilege</span><span class="chip">IAM</span><span class="chip">AES-256</span><span class="chip">Incident Response</span><span class="chip">VPN</span><span class="chip">Nessus</span><span class="chip">Nmap</span></div>
       </div>
       <div class="skill-block">
         <h4>Languages</h4>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span>
-          <span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">SQL</span>
-          <span class="chip">Bash</span><span class="chip">PowerShell</span><span class="chip">HTML/CSS</span>
-        </div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">C#</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">KQL</span></div>
       </div>
       <div class="skill-block">
-        <h4>Tools &amp; Frameworks</h4>
-        <div class="chips">
-          <span class="chip">Linux</span><span class="chip">Git</span><span class="chip">Flask</span>
-          <span class="chip">REST APIs</span><span class="chip">Azure SDK</span><span class="chip">OpenAI API</span>
-          <span class="chip">Chart.js</span><span class="chip">VS Code</span>
-        </div>
+        <h4>Database &amp; Backend</h4>
+        <div class="chips"><span class="chip">SQL Tuning</span><span class="chip">Stored Procedures</span><span class="chip">Joins</span><span class="chip">Relational Data Modeling</span><span class="chip">REST APIs</span><span class="chip">JSON Payload Validation</span><span class="chip">Flask</span></div>
+      </div>
+      <div class="skill-block">
+        <h4>Enterprise AI</h4>
+        <div class="chips"><span class="chip">LLMs</span><span class="chip">Azure OpenAI</span><span class="chip">Prompt Engineering</span><span class="chip">Hosted Model APIs</span><span class="chip">AI Coding Assistants</span></div>
+      </div>
+      <div class="skill-block">
+        <h4>Tools &amp; Methods</h4>
+        <div class="chips"><span class="chip">Jira</span><span class="chip">ServiceNow</span><span class="chip">Linux</span><span class="chip">Agile</span><span class="chip">Change Management</span><span class="chip">UAT</span><span class="chip">VS Code</span></div>
       </div>
     </div>
   </div>
@@ -542,13 +531,24 @@
         <div class="col-label">Experience</div>
 
         <div class="tl-item">
-          <div class="role">AI Engineering Intern</div>
-          <div class="org">HermesCloud Technology Partners</div>
+          <div class="role">Cloud Network Engineer (Contract)</div>
+          <div class="org">Nagarro</div>
+          <div class="meta">Jun 2026 – Present · New York, NY</div>
+          <ul>
+            <li>Delivering production support with 99.9% uptime for 200+ users, root-causing complex system, VPN, and connectivity issues.</li>
+            <li>Managing IT workflows and incidents in ServiceNow and Jira, with in-depth troubleshooting of production environments.</li>
+            <li>Following strict change management: standardized environment promotion, secure de-provisioning, and release notes, cutting IT resolution time by 20%.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="role">AI Developer Intern</div>
+          <div class="org">Hermes Cloud Technology Partners</div>
           <div class="meta">Jan 2026 – Apr 2026 · Tomball, TX</div>
           <ul>
-            <li>Engineered secure CI/CD pipelines in Azure DevOps (Python/PowerShell) with automated policy checks, cutting regression and audit cycle times by 40% for 5 teams.</li>
-            <li>Automated security validation via Azure Test Plans — 30% faster identification of critical issues across 3 environments and 150+ test cases.</li>
-            <li>Built a real-time reporting dashboard in Vanilla JS / Chart.js giving 12+ stakeholders instant visibility into compliance metrics.</li>
+            <li>Built infrastructure automation and automated testing scripts in Python, driving continuous integration across Azure DevOps and GitHub Actions pipelines.</li>
+            <li>Used AI coding assistants daily while reviewing, testing, and correcting AI-generated code before deployment.</li>
+            <li>Worked with IT teams and business stakeholders to design real-time dashboards for production performance and logging events.</li>
           </ul>
         </div>
 
@@ -557,9 +557,9 @@
           <div class="org">GoExpedi</div>
           <div class="meta">Aug 2025 – Nov 2025 · Houston, TX</div>
           <ul>
-            <li>Built CI/CD pipelines in Azure (Python/PowerShell), reducing deployment time by 35% across multiple environments.</li>
-            <li>Configured Azure App Services and Blob Storage with RBAC policies, improving reliability across 3 environments.</li>
-            <li>Stood up monitoring with Azure Monitor and Log Analytics (25% faster incident response) and detected 15+ security events with KQL in a SIEM environment.</li>
+            <li>Supported platform migrations and cloud infrastructure upgrades across 3 Azure environments, enforcing least privilege and RBAC.</li>
+            <li>Wrote and tuned SQL and KQL queries against production data to triage 15+ critical security alerts, speeding up incident response.</li>
+            <li>Worked with third-party vendors and cross-functional teams to resolve infrastructure anomalies and speed up secure server deployments by 35%.</li>
           </ul>
         </div>
       </div>
@@ -614,21 +614,20 @@
     <div class="carousel reveal" id="carousel">
 
       <article class="pcard">
-        <div class="pcover"><span class="ribbon">Cloud</span><svg class="pcover-art" viewBox="0 0 340 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-<defs><linearGradient id="c1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6fd6"/><stop offset="1" stop-color="#0c1d36"/></linearGradient>
-<radialGradient id="g1" cx="0.45" cy="0.4" r="0.6"><stop offset="0" stop-color="#9cc9ff" stop-opacity="0.5"/><stop offset="1" stop-color="#9cc9ff" stop-opacity="0"/></radialGradient></defs>
-<rect width="340" height="170" fill="url(#c1)"/><circle cx="150" cy="68" r="100" fill="url(#g1)"/><g stroke="#fff" stroke-opacity="0.07" stroke-width="1"><path d="M50 0V170M110 0V170M170 0V170M230 0V170M290 0V170"/><path d="M0 57H340M0 114H340"/></g>
-<rect x="208" y="92" width="44" height="56" rx="6" fill="#fff" fill-opacity="0.16" stroke="#fff" stroke-opacity="0.45"/>
-<path d="M218 108h24M218 120h24M218 132h15" stroke="#fff" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
-<g transform="translate(96 60)" fill="#fff"><circle cx="2" cy="18" r="15"/><circle cx="22" cy="6" r="21"/><circle cx="48" cy="14" r="16"/><circle cx="64" cy="22" r="12"/><rect x="0" y="18" width="64" height="18" rx="9"/></g>
-<path d="M120 92V62m0 0l-11 11m11-11l11 11" stroke="#2f6fd6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<g transform="translate(244 46)"><circle r="17" fill="#0c1d36" stroke="#9cc9ff" stroke-width="1.5"/><rect x="-7" y="-1" width="14" height="11" rx="2.5" fill="#9cc9ff"/><path d="M-4.5 -1v-3.5a4.5 4.5 0 0 1 9 0v3.5" stroke="#9cc9ff" stroke-width="2.2" fill="none"/></g>
-<rect x="40" y="120" width="13" height="13" fill="#3a5a7a" opacity="0.7"/><rect x="56" y="128" width="9" height="9" fill="#2f6fd6" opacity="0.6"/>
+        <div class="pcover"><span class="ribbon">AI / Security</span><svg class="pcover-art" viewBox="0 0 340 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="c6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b07a1e"/><stop offset="1" stop-color="#2e1d06"/></linearGradient>
+<radialGradient id="g6" cx="0.45" cy="0.4" r="0.6"><stop offset="0" stop-color="#ffd58a" stop-opacity="0.45"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient></defs>
+<rect width="340" height="170" fill="url(#c6)"/><circle cx="150" cy="62" r="100" fill="url(#g6)"/><g stroke="#fff" stroke-opacity="0.07" stroke-width="1"><path d="M50 0V170M110 0V170M170 0V170M230 0V170M290 0V170"/><path d="M0 57H340M0 114H340"/></g>
+<rect x="50" y="38" width="160" height="104" rx="9" fill="#1c1205" fill-opacity="0.6" stroke="#fff" stroke-opacity="0.28"/>
+<g font-family="monospace" font-size="10" fill="#fff" fill-opacity="0.75"><text x="62" y="60">[INFO] auth ok</text><text x="62" y="78">[WARN] retry 3/5</text><text x="62" y="96" fill="#ff9d7a" fill-opacity="1">[ERR] 0x80070005</text><text x="62" y="114">[INFO] vpn up</text></g>
+<rect x="58" y="86" width="144" height="14" rx="3" fill="none" stroke="#ffd58a" stroke-width="1.5"/>
+<g transform="translate(262 82)"><circle r="28" fill="#2e1d06" stroke="#ffd58a" stroke-width="2"/><path d="M0 -14c1.6 9 5 12.4 14 14-9 1.6-12.4 5-14 14-1.6-9-5-12.4-14-14 9-1.6 12.4-5 14-14z" fill="#ffe7b8"/></g>
+<rect x="250" y="124" width="13" height="13" fill="#8a5e18" opacity="0.7"/><rect x="266" y="132" width="9" height="9" fill="#ffd58a" opacity="0.55"/>
 </svg></div>
         <div class="pbody">
-          <h3>Cloud File Storage Web App</h3>
-          <p class="desc">A cloud file storage system on Azure Blob Storage with role-based access across 3 user tiers, AES-256 encryption, and RBAC authorization — deployed and hosted on Azure App Service.</p>
-          <div class="pstack"><span>Python</span><span>Flask</span><span>Azure Blob</span><span>App Service</span><span>AES-256</span></div>
+          <h3>Automated Security Event &amp; Log Analyzer</h3>
+          <p class="desc">Automates log analysis and incident triage through the Azure OpenAI REST API, with retry handling and careful token and context management to keep hallucinations down when explaining error codes and system events.</p>
+          <div class="pstack"><span>Python</span><span>Azure OpenAI</span><span>LLMs</span><span>Prompt Engineering</span></div>
           <div class="plinks"><a href="https://github.com/zainbahalim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> Code</a></div>
         </div>
       </article>
@@ -647,9 +646,29 @@
 <rect x="250" y="118" width="13" height="13" fill="#2f7a6e" opacity="0.7"/><rect x="266" y="126" width="9" height="9" fill="#7fe3da" opacity="0.5"/>
 </svg></div>
         <div class="pbody">
-          <h3>Azure SIEM Monitoring Lab</h3>
-          <p class="desc">A cloud SIEM across 10 VMs with Azure Monitor and Log Analytics. Simulated 15+ attack scenarios — brute-force, failed auth — then wrote KQL to surface and correlate suspicious activity across endpoints.</p>
-          <div class="pstack"><span>Azure Monitor</span><span>Log Analytics</span><span>KQL</span></div>
+          <h3>Cloud SIEM &amp; Network Security Lab</h3>
+          <p class="desc">A cloud SIEM across 10 servers with Azure Monitor and Log Analytics. Simulated attacks like brute force and failed auth, then wrote KQL to catch network anomalies and validate defense in depth.</p>
+          <div class="pstack"><span>Virtual Machines</span><span>Log Analytics</span><span>KQL</span></div>
+          <div class="plinks"><a href="https://github.com/zainbahalim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> Code</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="pcover"><span class="ribbon">Cloud</span><svg class="pcover-art" viewBox="0 0 340 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="c1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6fd6"/><stop offset="1" stop-color="#0c1d36"/></linearGradient>
+<radialGradient id="g1" cx="0.45" cy="0.4" r="0.6"><stop offset="0" stop-color="#9cc9ff" stop-opacity="0.5"/><stop offset="1" stop-color="#9cc9ff" stop-opacity="0"/></radialGradient></defs>
+<rect width="340" height="170" fill="url(#c1)"/><circle cx="150" cy="68" r="100" fill="url(#g1)"/><g stroke="#fff" stroke-opacity="0.07" stroke-width="1"><path d="M50 0V170M110 0V170M170 0V170M230 0V170M290 0V170"/><path d="M0 57H340M0 114H340"/></g>
+<rect x="208" y="92" width="44" height="56" rx="6" fill="#fff" fill-opacity="0.16" stroke="#fff" stroke-opacity="0.45"/>
+<path d="M218 108h24M218 120h24M218 132h15" stroke="#fff" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
+<g transform="translate(96 60)" fill="#fff"><circle cx="2" cy="18" r="15"/><circle cx="22" cy="6" r="21"/><circle cx="48" cy="14" r="16"/><circle cx="64" cy="22" r="12"/><rect x="0" y="18" width="64" height="18" rx="9"/></g>
+<path d="M120 92V62m0 0l-11 11m11-11l11 11" stroke="#2f6fd6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(244 46)"><circle r="17" fill="#0c1d36" stroke="#9cc9ff" stroke-width="1.5"/><rect x="-7" y="-1" width="14" height="11" rx="2.5" fill="#9cc9ff"/><path d="M-4.5 -1v-3.5a4.5 4.5 0 0 1 9 0v3.5" stroke="#9cc9ff" stroke-width="2.2" fill="none"/></g>
+<rect x="40" y="120" width="13" height="13" fill="#3a5a7a" opacity="0.7"/><rect x="56" y="128" width="9" height="9" fill="#2f6fd6" opacity="0.6"/>
+</svg></div>
+        <div class="pbody">
+          <h3>Enterprise IAM &amp; Cloud Storage System</h3>
+          <p class="desc">A full-stack secure document storage app across 3 permission tiers, backed by a relational database with tuned SQL and stored procedures, and REST APIs with strict authentication, payload validation, and AES-256 encryption.</p>
+          <div class="pstack"><span>Python</span><span>SQL</span><span>RBAC</span><span>REST APIs</span><span>Azure Blob</span><span>AES-256</span></div>
           <div class="plinks"><a href="https://github.com/zainbahalim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> Code</a></div>
         </div>
       </article>
@@ -729,12 +748,24 @@
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
         <h3>Microsoft AZ-900</h3>
         <p class="issuer">Azure Fundamentals</p>
-        <span class="status progress"><span class="d"></span> In Progress</span>
+        <span class="status done"><span class="d"></span> Completed</span>
       </div>
       <div class="cert-card reveal">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
         <h3>CompTIA Security+</h3>
         <p class="issuer">Cybersecurity Fundamentals</p>
+        <span class="status progress"><span class="d"></span> In Progress</span>
+      </div>
+      <div class="cert-card reveal">
+        <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></svg></div>
+        <h3>Cisco CCNA</h3>
+        <p class="issuer">Networking Fundamentals</p>
+        <span class="status progress"><span class="d"></span> In Progress</span>
+      </div>
+      <div class="cert-card reveal">
+        <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
+        <h3>Microsoft AZ-104</h3>
+        <p class="issuer">Azure Administrator</p>
         <span class="status progress"><span class="d"></span> In Progress</span>
       </div>
       <div class="cert-card reveal">
@@ -768,7 +799,7 @@
   <div class="wrap">
     <span class="eyebrow reveal">reach out</span>
     <h2 class="section-title reveal">Let's work together</h2>
-    <p class="section-sub reveal">Open to cloud, DevOps, and security roles — internships and new grad. Drop me a message and I’ll get back to you.</p>
+    <p class="section-sub reveal">Open to cloud, DevOps, networking, and security roles. Drop me a message and I’ll get back to you.</p>
 
     
 
@@ -886,7 +917,7 @@
 /* ===== typed roles ===== */
 (function () {
   const el = document.getElementById("role");
-  const roles = ["Cloud Engineer", "DevOps Engineer", "Security Analyst", "Backend Developer"];
+  const roles = ["Cloud Engineer", "Network Engineer", "DevOps Engineer", "Security Analyst"];
   const caret = '<span class="caret"></span>';
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.innerHTML = roles[0] + caret; return; }
   let r = 0, i = 0, deleting = false;
@@ -929,9 +960,6 @@
   car.querySelectorAll("a").forEach(a => a.addEventListener("click", e => { if (moved) e.preventDefault(); }));
 })();
 
-/* ===== CV button placeholder (no link yet) ===== */
-document.getElementById("cvBtn").setAttribute("href", "/Zain_s_Cloud_Resume.pdf");
-document.getElementById("cvBtn").setAttribute("download", "");
 /* ===== contact form -> mailto ===== */
 (function () {
   document.getElementById("contactForm").addEventListener("submit", e => {
