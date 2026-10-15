@@ -47,13 +47,18 @@
     overflow-x: hidden;
   }
 
+  /* ---------- vibrant palette ---------- */
+  :root { --c-blue:#4f9cf9; --c-teal:#2dd4bf; --c-green:#4ade80; --c-violet:#a78bfa; --c-pink:#f472b6; --c-orange:#fb923c; --c-amber:#fbbf24; --c-red:#f87171; --c-cyan:#22d3ee; }
+
   /* ---------- background ---------- */
   #trail { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
   .glow { position: fixed; z-index: -1; border-radius: 50%; filter: blur(110px); opacity: 0.5; pointer-events: none; }
   .glow.a { top: -160px; right: -120px; width: 460px; height: 460px;
     background: radial-gradient(circle, rgba(79,156,249,0.22), transparent 70%); }
   .glow.b { bottom: 10%; left: -160px; width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(60,120,200,0.16), transparent 70%); }
+    background: radial-gradient(circle, rgba(167,139,250,0.20), transparent 70%); }
+  .glow.c { top: 45%; right: -180px; width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(244,114,182,0.14), transparent 70%); }
 
   ::selection { background: var(--accent-soft); color: #fff; }
   a { color: inherit; text-decoration: none; }
@@ -61,7 +66,8 @@
   .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
   /* ---------- shared type ---------- */
-  .eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 14px; display: inline-block; }
+  .eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 14px; display: inline-block; background: linear-gradient(90deg, var(--c-blue), var(--c-violet)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .eyebrow::before { -webkit-text-fill-color: var(--dim); }
   .eyebrow::before { content: "// "; color: var(--dim); }
   h2.section-title { font-family: var(--display); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 14px; }
   .section-sub { color: var(--muted); max-width: 620px; font-size: 1.02rem; margin-bottom: 48px; }
@@ -87,7 +93,12 @@
   /* ---------- hero (Hello, I am) ---------- */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 0 90px; }
   .hero-hello { font-family: var(--mono); letter-spacing: 0.42em; text-transform: uppercase; font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; padding-left: 0.42em; }
-  .hero h1 { font-family: var(--display); font-weight: 600; font-size: clamp(3rem, 11vw, 7rem); line-height: 1; letter-spacing: -0.015em; color: var(--accent); margin-bottom: 24px; }
+  .hero h1 { font-family: var(--display); font-weight: 600; font-size: clamp(3rem, 11vw, 7rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--accent); margin-bottom: 24px;
+    background: linear-gradient(100deg, var(--c-blue), var(--c-violet) 45%, var(--c-pink) 75%, var(--c-orange)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: sheen 9s ease-in-out infinite alternate; }
+  @keyframes sheen { to { background-position: 100% center; } }
+  .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: -12px 0 34px; }
+  .hero-badge { font-family: var(--mono); font-size: 0.78rem; padding: 6px 14px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--h) 40%, transparent); background: color-mix(in srgb, var(--h) 12%, transparent); color: var(--h); display: inline-flex; align-items: center; gap: 7px; }
+  .hero-badge .d { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
   .hero-role-wrap { display: flex; align-items: center; gap: 18px; width: min(560px, 86vw); margin-bottom: 40px; }
   .hero-role-wrap .rule { flex: 1; height: 1px; background: var(--line); }
   .hero-role { font-family: var(--mono); letter-spacing: 0.18em; text-transform: uppercase; font-size: clamp(0.8rem, 2.2vw, 1rem); color: var(--text); white-space: nowrap; min-width: 12ch; }
@@ -135,8 +146,12 @@
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .stat { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 24px 20px; transition: border-color 0.25s, transform 0.25s; }
   .stat:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-  .stat .num { font-family: var(--display); font-weight: 700; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-  .stat .num .suf { font-size: 1.3rem; color: var(--accent-2); }
+  .stat { --h: var(--accent); position: relative; overflow: hidden; }
+  .stat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--h), transparent); }
+  .stat::after { content: ""; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--h) 22%, transparent), transparent 70%); }
+  .stat:hover { border-color: color-mix(in srgb, var(--h) 45%, transparent) !important; }
+  .stat .num { font-family: var(--display); font-weight: 700; font-size: 2.2rem; color: var(--h); line-height: 1; margin-bottom: 8px; }
+  .stat .num .suf { font-size: 1.3rem; color: var(--h); opacity: 0.75; }
   .stat .label { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
 
   /* ---------- skills: hover-reveal cards ---------- */
@@ -149,6 +164,8 @@
   .skill-card:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
   .skill-card .watermark { position: absolute; right: -14px; bottom: -14px; opacity: 0.10; }
   .skill-card .watermark svg { width: 130px; height: 130px; stroke: #fff; }
+  .skill-card { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--h, #fff) 35%, transparent); }
+  .skill-card:hover { border-color: color-mix(in srgb, var(--h, #fff) 50%, transparent); }
   .skill-card .front-title {
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
     font-family: var(--display); font-weight: 600; font-size: 1.08rem; color: #fff;
@@ -157,7 +174,7 @@
   }
   .skill-card .panel {
     position: absolute; inset: 0; padding: 24px;
-    background: linear-gradient(155deg, var(--accent), #2f6fd6);
+    background: linear-gradient(155deg, var(--h, var(--accent)), color-mix(in srgb, var(--h, #2f6fd6) 55%, #0b0c0e));
     display: flex; flex-direction: column; justify-content: center;
     opacity: 0; transform: translateY(10px); transition: opacity 0.35s, transform 0.35s;
   }
@@ -171,23 +188,27 @@
   /* ---------- skill chips ---------- */
   .skill-block { margin-bottom: 30px; }
   .skill-block h4 { font-family: var(--mono); font-size: 0.82rem; color: var(--dim); margin-bottom: 14px; letter-spacing: 0.04em; }
-  .skill-block h4::before { content: "› "; color: var(--accent); }
+  .skill-block { --h: var(--accent); }
+  .skill-block h4 { color: var(--h) !important; }
+  .skill-block h4::before { content: "› "; color: var(--h); }
   .chips { display: flex; flex-wrap: wrap; gap: 10px; }
   .chip { font-family: var(--mono); font-size: 0.85rem; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,0.015); transition: border-color 0.2s, color 0.2s, transform 0.15s; }
-  .chip:hover { border-color: var(--accent-line); color: var(--accent-2); transform: translateY(-2px); }
+  .skill-block .chip { border-color: color-mix(in srgb, var(--h) 28%, transparent); background: color-mix(in srgb, var(--h) 7%, transparent); }
+  .chip:hover, .skill-block .chip:hover { border-color: var(--h, var(--accent-line)); color: var(--h, var(--accent-2)); background: color-mix(in srgb, var(--h, #4f9cf9) 15%, transparent); transform: translateY(-2px); }
 
   /* ---------- experience + education timeline ---------- */
   .xp-cols { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; }
   .col-label { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); }
   .tl-item { position: relative; padding-left: 26px; padding-bottom: 30px; border-left: 1px solid var(--line); }
   .tl-item:last-child { border-left-color: transparent; padding-bottom: 0; }
-  .tl-item::before { content: ""; position: absolute; left: -6px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .tl-item { --h: var(--accent); }
+  .tl-item::before { content: ""; position: absolute; left: -6px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--h); box-shadow: 0 0 12px color-mix(in srgb, var(--h) 70%, transparent); }
   .tl-item .role { font-family: var(--display); font-weight: 600; font-size: 1.12rem; }
-  .tl-item .org { font-family: var(--mono); font-size: 0.85rem; color: var(--accent-2); margin: 5px 0 3px; }
+  .tl-item .org { font-family: var(--mono); font-size: 0.85rem; color: var(--h); margin: 5px 0 3px; }
   .tl-item .meta { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); margin-bottom: 12px; }
   .tl-item ul { list-style: none; }
   .tl-item li { color: var(--muted); font-size: 0.93rem; padding-left: 18px; position: relative; margin-bottom: 7px; }
-  .tl-item li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+  .tl-item li::before { content: "▹"; position: absolute; left: 0; color: var(--h); }
   .tl-item .course { color: var(--muted); font-size: 0.92rem; }
 
   /* ---------- communities ---------- */
@@ -196,7 +217,8 @@
   .comm-card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 26px; transition: border-color 0.25s, transform 0.25s, background 0.25s; }
   .comm-card:hover { border-color: var(--accent-line); transform: translateY(-3px); background: var(--panel-2); }
   .comm-card h3 { font-family: var(--display); font-weight: 600; font-size: 1.12rem; margin-bottom: 12px; }
-  .comm-card .pill { display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: var(--accent-2); background: var(--accent-soft); border: 1px solid var(--accent-line); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; }
+  .comm-card { --h: var(--accent); border-top: 2px solid color-mix(in srgb, var(--h) 60%, transparent) !important; }
+  .comm-card .pill { display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: var(--h); background: color-mix(in srgb, var(--h) 12%, transparent); border: 1px solid color-mix(in srgb, var(--h) 35%, transparent); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; }
   .comm-card p { color: var(--muted); font-size: 0.93rem; }
 
   /* ---------- projects carousel ---------- */
@@ -239,8 +261,11 @@
   .cert-grid .cert-card { flex: 0 1 calc((100% - 36px) / 3); }
   .cert-card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 28px 24px; text-align: center; transition: border-color 0.25s, transform 0.25s; }
   .cert-card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
-  .cert-card .badge-ic { width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 14px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; }
-  .cert-card .badge-ic svg { width: 28px; height: 28px; stroke: var(--accent); }
+  .cert-card { --h: var(--accent); position: relative; overflow: hidden; }
+  .cert-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--h), transparent); }
+  .cert-card:hover { border-color: color-mix(in srgb, var(--h) 45%, transparent) !important; }
+  .cert-card .badge-ic { width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 14px; background: color-mix(in srgb, var(--h) 16%, transparent); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 24px color-mix(in srgb, var(--h) 22%, transparent); }
+  .cert-card .badge-ic svg { width: 28px; height: 28px; stroke: var(--h); }
   .cert-card h3 { font-family: var(--display); font-weight: 600; font-size: 1.06rem; margin-bottom: 6px; }
   .cert-card .issuer { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
   .status { font-family: var(--mono); font-size: 0.72rem; padding: 5px 13px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; }
@@ -317,7 +342,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
-    .caret, .blink, .scroll-hint .mouse::after, .photo .ring { animation: none; }
+    .caret, .blink, .scroll-hint .mouse::after, .photo .ring, .hero h1 { animation: none; }
   }
 </style>
 </head>
@@ -326,6 +351,7 @@
 <canvas id="trail"></canvas>
 <div class="glow a"></div>
 <div class="glow b"></div>
+<div class="glow c"></div>
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
@@ -353,6 +379,11 @@
     <span class="rule"></span>
     <span class="hero-role" id="role">Cloud Engineer<span class="caret"></span></span>
     <span class="rule"></span>
+  </div>
+  <div class="hero-badges">
+    <span class="hero-badge" style="--h:var(--c-green)"><span class="d"></span>US Citizen</span>
+    <span class="hero-badge" style="--h:var(--c-cyan)"><span class="d"></span>Houston, TX</span>
+    <span class="hero-badge" style="--h:var(--c-violet)"><span class="d"></span>Open to cloud, network &amp; security roles</span>
   </div>
   <div class="btn-row">
     <a href="#projects" class="btn primary">
@@ -411,10 +442,10 @@
     </div>
 
     <div class="stats reveal">
-      <div class="stat"><div class="num">3</div><div class="label">Tech roles</div></div>
-      <div class="stat"><div class="num">99.9<span class="suf">%</span></div><div class="label">Uptime for 200+ users</div></div>
-      <div class="stat"><div class="num">35<span class="suf">%</span></div><div class="label">Faster deployments</div></div>
-      <div class="stat"><div class="num">15<span class="suf">+</span></div><div class="label">Critical alerts triaged</div></div>
+      <div class="stat" style="--h:var(--c-blue)"><div class="num">3</div><div class="label">Tech roles</div></div>
+      <div class="stat" style="--h:var(--c-green)"><div class="num">99.9<span class="suf">%</span></div><div class="label">Uptime for 200+ users</div></div>
+      <div class="stat" style="--h:var(--c-orange)"><div class="num">35<span class="suf">%</span></div><div class="label">Faster deployments</div></div>
+      <div class="stat" style="--h:var(--c-pink)"><div class="num">15<span class="suf">+</span></div><div class="label">Critical alerts triaged</div></div>
     </div>
   </div>
 </section>
@@ -428,7 +459,7 @@
 
     <div class="skill-grid">
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#16314f;--c2:#0d1722;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-blue);--c1:#16314f;--c2:#0d1722;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
         <span class="front-title">Cloud Engineering</span>
         <div class="panel">
@@ -438,7 +469,7 @@
         </div>
       </div>
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#13343a;--c2:#0c1719;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-teal);--c1:#13343a;--c2:#0c1719;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
         <span class="front-title">DevOps &amp; Automation</span>
         <div class="panel">
@@ -448,7 +479,7 @@
         </div>
       </div>
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#173a2a;--c2:#0c1813;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-green);--c1:#173a2a;--c2:#0c1813;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span>
         <span class="front-title">Security &amp; SIEM</span>
         <div class="panel">
@@ -458,7 +489,7 @@
         </div>
       </div>
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#2a2350;--c2:#100f1a;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-violet);--c1:#2a2350;--c2:#100f1a;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M8 9l3 3-3 3M13 15h3M3 4h18v16H3z"/></svg></span>
         <span class="front-title">Backend, Data &amp; AI</span>
         <div class="panel">
@@ -468,7 +499,7 @@
         </div>
       </div>
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#4a3416;--c2:#19120a;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-orange);--c1:#4a3416;--c2:#19120a;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></svg></span>
         <span class="front-title">Networking &amp; Support</span>
         <div class="panel">
@@ -478,7 +509,7 @@
         </div>
       </div>
 
-      <div class="skill-card reveal" tabindex="0" style="--c1:#3f1f3a;--c2:#170c15;">
+      <div class="skill-card reveal" tabindex="0" style="--h:var(--c-pink);--c1:#3f1f3a;--c2:#170c15;">
         <span class="watermark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 5h16v14H4z"/><path d="M8 9l3 3-3 3M13 15h3"/></svg></span>
         <span class="front-title">GNU/Linux</span>
         <div class="panel">
@@ -491,29 +522,29 @@
     </div>
 
     <div class="reveal">
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-blue)">
         <h4>Cloud &amp; DevOps</h4>
         <div class="chips"><span class="chip">Microsoft Azure</span><span class="chip">Azure DevOps</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">App Service</span><span class="chip">Blob Storage</span><span class="chip">Azure Monitor</span><span class="chip">Log Analytics</span><span class="chip">Google Cloud Platform</span></div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-green)">
         <h4>Security &amp; Networking</h4>
         <div class="chips"><span class="chip">KQL</span><span class="chip">SIEM</span><span class="chip">Azure Sentinel</span><span class="chip">RBAC</span><span class="chip">Least Privilege</span><span class="chip">IAM</span><span class="chip">AES-256</span><span class="chip">Incident Response</span><span class="chip">VPN</span><span class="chip">Nessus</span><span class="chip">Nmap</span></div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-amber)">
         <h4>Languages</h4>
-        <div class="chips"><span class="chip">Python</span><span class="chip">C#</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">KQL</span></div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">C# <span style="opacity:.6">(familiar)</span></span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">KQL</span></div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-violet)">
         <h4>Database &amp; Backend</h4>
-        <div class="chips"><span class="chip">SQL Tuning</span><span class="chip">Stored Procedures</span><span class="chip">Joins</span><span class="chip">Relational Data Modeling</span><span class="chip">REST APIs</span><span class="chip">JSON Payload Validation</span><span class="chip">Flask</span></div>
+        <div class="chips"><span class="chip">SQL Tuning</span><span class="chip">Stored Procedures</span><span class="chip">Joins</span><span class="chip">Relational Data Modeling</span><span class="chip">REST APIs</span><span class="chip">JSON Payload Validation</span><span class="chip">System-to-System Integrations</span><span class="chip">Flask</span></div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-pink)">
         <h4>Enterprise AI</h4>
-        <div class="chips"><span class="chip">LLMs</span><span class="chip">Azure OpenAI</span><span class="chip">Prompt Engineering</span><span class="chip">Hosted Model APIs</span><span class="chip">AI Coding Assistants</span></div>
+        <div class="chips"><span class="chip">LLMs</span><span class="chip">Azure OpenAI</span><span class="chip">Prompt Engineering</span><span class="chip">Hosted Model APIs</span><span class="chip">AI Coding Assistants</span><span class="chip">Context Limits</span></div>
       </div>
-      <div class="skill-block">
+      <div class="skill-block" style="--h:var(--c-cyan)">
         <h4>Tools &amp; Methods</h4>
-        <div class="chips"><span class="chip">Jira</span><span class="chip">ServiceNow</span><span class="chip">Linux</span><span class="chip">Agile</span><span class="chip">Change Management</span><span class="chip">UAT</span><span class="chip">VS Code</span></div>
+        <div class="chips"><span class="chip">Jira</span><span class="chip">ServiceNow</span><span class="chip">Linux</span><span class="chip">Full-Stack Development</span><span class="chip">Agile</span><span class="chip">Change Management</span><span class="chip">UAT</span><span class="chip">VS Code</span></div>
       </div>
     </div>
   </div>
@@ -530,7 +561,7 @@
       <div class="reveal">
         <div class="col-label">Experience</div>
 
-        <div class="tl-item">
+        <div class="tl-item" style="--h:var(--c-teal)">
           <div class="role">Cloud Network Engineer (Contract)</div>
           <div class="org">Nagarro</div>
           <div class="meta">Jun 2026 – Present · New York, NY</div>
@@ -541,7 +572,7 @@
           </ul>
         </div>
 
-        <div class="tl-item">
+        <div class="tl-item" style="--h:var(--c-violet)">
           <div class="role">AI Developer Intern</div>
           <div class="org">Hermes Cloud Technology Partners</div>
           <div class="meta">Jan 2026 – Apr 2026 · Tomball, TX</div>
@@ -552,7 +583,7 @@
           </ul>
         </div>
 
-        <div class="tl-item">
+        <div class="tl-item" style="--h:var(--c-orange)">
           <div class="role">Cloud / DevOps Intern</div>
           <div class="org">GoExpedi</div>
           <div class="meta">Aug 2025 – Nov 2025 · Houston, TX</div>
@@ -566,7 +597,7 @@
 
       <div class="reveal">
         <div class="col-label">Education</div>
-        <div class="tl-item">
+        <div class="tl-item" style="--h:var(--c-amber)">
           <div class="role">A.S. in Computer Science</div>
           <div class="org">Lone Star College</div>
           <div class="meta">Aug 2025 – May 2027 · Tomball, TX</div>
@@ -582,12 +613,12 @@
       <p class="section-sub">Programs and groups I'm active in outside the day-to-day.</p>
     </div>
     <div class="comm-grid">
-      <div class="comm-card reveal">
+      <div class="comm-card reveal" style="--h:var(--c-amber)">
         <span class="pill">Mar 2026 – Present · Developer</span>
         <h3>Google Developer Program</h3>
         <p>Completed 10+ hands-on cloud labs through Google Cloud Skills Boost — Compute Engine, Cloud IAM, and VPC networking — building multi-cloud proficiency across Azure and GCP, and exploring NVIDIA developer resources for AI/ML cloud workflows.</p>
       </div>
-      <div class="comm-card reveal">
+      <div class="comm-card reveal" style="--h:var(--c-pink)">
         <span class="pill">Dec 2025 – Present · Inducted Member</span>
         <h3>National Society of Leadership &amp; Success</h3>
         <p>Selected among top students at LSC University Park for induction into a nationally recognized leadership honor society, completing structured training in professional communication, goal-setting, and accountability alongside 50+ peers.</p>
@@ -741,34 +772,34 @@
   <div class="wrap">
     <span class="eyebrow reveal">verified skills</span>
     <h2 class="section-title reveal">Certifications &amp; learning</h2>
-    <p class="section-sub reveal">Actively building credentials across cloud and security.</p>
+    <p class="section-sub reveal">Building credentials across cloud, networking, and security.</p>
 
     <div class="cert-grid">
-      <div class="cert-card reveal">
+      <div class="cert-card reveal" style="--h:var(--c-blue)">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
         <h3>Microsoft AZ-900</h3>
         <p class="issuer">Azure Fundamentals</p>
         <span class="status done"><span class="d"></span> Completed</span>
       </div>
-      <div class="cert-card reveal">
+      <div class="cert-card reveal" style="--h:var(--c-red)">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
         <h3>CompTIA Security+</h3>
         <p class="issuer">Cybersecurity Fundamentals</p>
         <span class="status progress"><span class="d"></span> In Progress</span>
       </div>
-      <div class="cert-card reveal">
+      <div class="cert-card reveal" style="--h:var(--c-cyan)">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></svg></div>
         <h3>Cisco CCNA</h3>
         <p class="issuer">Networking Fundamentals</p>
         <span class="status progress"><span class="d"></span> In Progress</span>
       </div>
-      <div class="cert-card reveal">
+      <div class="cert-card reveal" style="--h:var(--c-violet)">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
         <h3>Microsoft AZ-104</h3>
         <p class="issuer">Azure Administrator</p>
         <span class="status progress"><span class="d"></span> In Progress</span>
       </div>
-      <div class="cert-card reveal">
+      <div class="cert-card reveal" style="--h:var(--c-amber)">
         <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
         <h3>Google Cloud Skills Boost</h3>
         <p class="issuer">10+ labs · Compute, IAM, VPC</p>
@@ -837,7 +868,7 @@
 (function () {
   const canvas = document.getElementById("trail");
   const ctx = canvas.getContext("2d");
-  const COLORS = ["#3a5a5a", "#5e3636", "#3a5a3a", "#7a6a2a", "#2f567a", "#4a4a2a"];
+  const COLORS = ["#2f6fd6", "#7c4ddb", "#c2417f", "#15807a", "#c7702a", "#2a9d5c"];
   const CELL = 38, DECAY = 0.93;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let cols, rows, cells, lastX = null, lastY = null;
